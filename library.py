@@ -35,7 +35,7 @@ print(df.to_string(index=False, justify="left"))
 
 # 5️⃣ Simpan hasil ke file Excel baru (otomatis di folder yang sama)
 folder_sekarang = os.path.dirname(os.path.abspath(__file__))
-output_path = os.path.join(folder_sekarang, "Hasil_Analisis_Wisuda.xlsx")
+output_path = os.path.join(folder_sekarang, "rekap_wisuda_final.xlsx")
 df.to_excel(output_path, index=False)
 
 print(f"\n✅ File hasil telah disimpan otomatis sebagai: {output_path}")
@@ -68,4 +68,35 @@ plt.tight_layout()
 grafik_pie_path = os.path.join(folder_sekarang, "Grafik_Distribusi_Predikat_Wisuda.png")
 plt.savefig(grafik_pie_path, dpi=300, bbox_inches='tight')
 print(f"\n✅ Grafik pie telah disimpan sebagai: {grafik_pie_path}")
+plt.show()
+
+# 8️⃣ Grafik rata-rata IPK antar prodi
+rata2_ipk_per_prodi = df.groupby("Program Studi")["IPK"].mean().sort_values()
+plt.figure(figsize=(10, 6))
+rata2_ipk_per_prodi.plot(kind="barh", color="lightgreen", edgecolor="black")
+plt.title("Rata-rata IPK per Program Studi", fontsize=14, fontweight='bold')
+plt.xlabel("Rata-rata IPK", fontsize=12)
+plt.ylabel("Program Studi", fontsize=12)
+plt.grid(axis="x", linestyle="--", alpha=0.7)
+plt.tight_layout()
+
+# Simpan grafik
+grafik_ipk_path = os.path.join(folder_sekarang, "Grafik_RataRata_IPK_per_Prodi.png")
+plt.savefig(grafik_ipk_path, dpi=300, bbox_inches='tight')
+print(f"\n✅ Grafik IPK rata-rata per prodi disimpan sebagai: {grafik_ipk_path}")
+plt.show()
+
+# 9️⃣ Scatter plot hubungan lama studi dan IPK
+plt.figure(figsize=(8, 6))
+plt.scatter(df["Lama Studi (Semester)"], df["IPK"], color="salmon", edgecolor="black", alpha=0.7)
+plt.title("Hubungan Lama Studi dan IPK", fontsize=14, fontweight='bold')
+plt.xlabel("Lama Studi (Semester)", fontsize=12)
+plt.ylabel("IPK", fontsize=12)
+plt.grid(True, linestyle="--", alpha=0.6)
+plt.tight_layout()
+
+# Simpan grafik
+grafik_scatter_path = os.path.join(folder_sekarang, "Grafik_LamaStudi_vs_IPK.png")
+plt.savefig(grafik_scatter_path, dpi=300, bbox_inches='tight')
+print(f"\n✅ Grafik hubungan lama studi dan IPK disimpan sebagai: {grafik_scatter_path}")
 plt.show()
