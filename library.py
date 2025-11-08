@@ -14,14 +14,14 @@ df = pd.read_excel(file_path)
 def hitung_grade_predikat(ipk, lama_studi):
     if ipk >= 3.75 and lama_studi <= 8:
         return "A", "Cumlaude"
-    elif ipk >= 3.51:
-        return "A-", "Sangat Memuaskan"
+    elif ipk >= 3.50:
+        return "B+", "Sangat Memuaskan"
     elif ipk >= 3.00:
-        return "B+", "Memuaskan"
+        return "B", "Memuaskan"
     elif ipk >= 2.50:
-        return "B", "Cukup"
+        return "C", "Cukup"
     else:
-        return "C", "Tidak Lulus"
+        return "D", "Tidak Lulus"
 
 # 3️⃣ Terapkan fungsi ke setiap baris data
 df[["Grade", "Predikat"]] = df.apply(
