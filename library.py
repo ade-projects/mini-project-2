@@ -18,7 +18,7 @@ def hitung_grade_predikat(ipk, lama_studi):
         return "A-", "Sangat Memuaskan"
     elif ipk >= 3.00:
         return "B+", "Memuaskan"
-    elif ipk >= 2.75:
+    elif ipk >= 2.50:
         return "B", "Cukup"
     else:
         return "C", "Tidak Lulus"
