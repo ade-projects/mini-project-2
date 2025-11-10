@@ -21,7 +21,7 @@ def hitung_grade_predikat(ipk, lama_studi):
     elif ipk >= 2.50:
         return "C", "Cukup"
     else:
-        return "D", "Tidak Lulus"
+        return "D", "Cukup"
 
 # 3️⃣ Terapkan fungsi ke setiap baris data
 df[["Grade", "Predikat"]] = df.apply(
